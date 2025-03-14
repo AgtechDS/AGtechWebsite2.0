@@ -13,7 +13,7 @@ const Footer = () => {
           <div className="space-y-4">
             <div className="flex items-center">
               <img
-                src="/lovable-uploads/05117b04-9b40-4413-bcca-0c6d768d3e0e.png"
+                src="/agtech-uploads/05117b04-9b40-4413-bcca-0c6d768d3e0e.png"
                 alt="AgTechDesigne Logo"
                 className="h-10 w-auto mr-2"
               />

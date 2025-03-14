@@ -13,7 +13,7 @@ const AiComputing = () => {
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-agtech-blue to-agtech-purple py-24">
         <div className="absolute inset-0 opacity-10">
-          <div className="h-full w-full bg-[url('/lovable-uploads/photo-1526374965328-7f61d4dc18c5.jpeg')] bg-cover bg-center bg-no-repeat filter blur-[2px]"></div>
+          <div className="h-full w-full bg-[url('/agtech-uploads/photo-1526374965328-7f61d4dc18c5.jpeg')] bg-cover bg-center bg-no-repeat filter blur-[2px]"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -42,7 +42,7 @@ const AiComputing = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <img
-              src="/lovable-uploads/photo-1485827404703-89b55fcc595e.jpeg"
+              src="/agtech-uploads/photo-1485827404703-89b55fcc595e.jpeg"
               alt="AI and Computing Solutions"
               className="rounded-lg shadow-xl w-full h-auto object-cover"
             />
@@ -142,7 +142,7 @@ const AiComputing = () => {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             <div className="lg:col-span-1">
               <img
-                src="/lovable-uploads/photo-1531297484001-80022131f5a1.jpeg"
+                src="/agtech-uploads/photo-1531297484001-80022131f5a1.jpeg"
                 alt="Case Study"
                 className="rounded-lg w-full h-auto shadow-lg"
               />

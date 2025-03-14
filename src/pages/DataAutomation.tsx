@@ -13,7 +13,7 @@ const DataAutomation = () => {
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-agtech-green to-agtech-blue py-24">
         <div className="absolute inset-0 opacity-10">
-          <div className="h-full w-full bg-[url('/lovable-uploads/photo-1460925895917-afdab827c52f.jpeg')] bg-cover bg-center bg-no-repeat filter blur-[2px]"></div>
+          <div className="h-full w-full bg-[url('/agtech-uploads/photo-1460925895917-afdab827c52f.jpeg')] bg-cover bg-center bg-no-repeat filter blur-[2px]"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -42,7 +42,7 @@ const DataAutomation = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
           >
             <img
-              src="/lovable-uploads/photo-1581090464777-f3220bbe1b8b.jpeg"
+              src="/agtech-uploads/photo-1581090464777-f3220bbe1b8b.jpeg"
               alt="Data Automation"
               className="rounded-lg shadow-xl w-full h-auto object-cover"
             />
@@ -151,7 +151,7 @@ const DataAutomation = () => {
               <div className="grid grid-cols-1 lg:grid-cols-5 gap-8">
                 <div className="lg:col-span-2">
                   <img
-                    src="/lovable-uploads/photo-1605810230434-7631ac76ec81.jpeg"
+                    src="/agtech-uploads/photo-1605810230434-7631ac76ec81.jpeg"
                     alt="Financial Dashboard"
                     className="rounded-lg w-full h-auto shadow-lg"
                   />
@@ -188,7 +188,7 @@ const DataAutomation = () => {
                 </div>
                 <div className="lg:col-span-2">
                   <img
-                    src="/lovable-uploads/photo-1519389950473-47ba0277781c.jpeg"
+                    src="/agtech-uploads/photo-1519389950473-47ba0277781c.jpeg"
                     alt="HR Automation"
                     className="rounded-lg w-full h-auto shadow-lg"
                   />

@@ -49,7 +49,7 @@ const App = () => {
                 transition={{ repeat: Infinity, duration: 1.5 }}
               >
                 <img 
-                  src="/lovable-uploads/05117b04-9b40-4413-bcca-0c6d768d3e0e.png" 
+                  src="/agtech-uploads/05117b04-9b40-4413-bcca-0c6d768d3e0e.png" 
                   alt="AgTechDesigne Logo" 
                   className="w-24 h-24"
                 />

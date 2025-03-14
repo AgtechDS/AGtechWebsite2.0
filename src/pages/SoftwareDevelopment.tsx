@@ -13,7 +13,7 @@ const SoftwareDevelopment = () => {
       {/* Hero Section */}
       <div className="relative bg-gradient-to-r from-agtech-purple to-agtech-blue py-24">
         <div className="absolute inset-0 opacity-10">
-          <div className="h-full w-full bg-[url('/lovable-uploads/photo-1498050108023-c5249f4df085.jpeg')] bg-cover bg-center bg-no-repeat filter blur-[2px]"></div>
+          <div className="h-full w-full bg-[url('/agtech-uploads/photo-1498050108023-c5249f4df085.jpeg')] bg-cover bg-center bg-no-repeat filter blur-[2px]"></div>
         </div>
         <div className="container mx-auto px-4 relative z-10">
           <motion.div
@@ -64,7 +64,7 @@ const SoftwareDevelopment = () => {
             className="order-1 lg:order-2"
           >
             <img
-              src="/lovable-uploads/photo-1461749280684-dccba630e2f6.jpeg"
+              src="/agtech-uploads/photo-1461749280684-dccba630e2f6.jpeg"
               alt="Software Development"
               className="rounded-lg shadow-xl w-full h-auto object-cover"
             />
@@ -162,7 +162,7 @@ const SoftwareDevelopment = () => {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
                 <div className="lg:col-span-1">
                   <img
-                    src="/lovable-uploads/photo-1486312338219-ce68d2c6f44d.jpeg"
+                    src="/agtech-uploads/photo-1486312338219-ce68d2c6f44d.jpeg"
                     alt="Web Platform"
                     className="rounded-lg w-full h-auto shadow-lg"
                   />
@@ -202,7 +202,7 @@ const SoftwareDevelopment = () => {
                 </div>
                 <div className="lg:col-span-1">
                   <img
-                    src="/lovable-uploads/photo-1581091226825-a6a2a5aee158.jpeg"
+                    src="/agtech-uploads/photo-1581091226825-a6a2a5aee158.jpeg"
                     alt="IoT System"
                     className="rounded-lg w-full h-auto shadow-lg"
                   />
