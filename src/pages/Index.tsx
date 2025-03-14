@@ -397,7 +397,7 @@ const Index = () => {
               <div className="relative">
                 <div className="absolute -inset-4 bg-agtech-purple/20 rounded-lg transform rotate-3 z-0"></div>
                 <img 
-                  src="/lovable-uploads/05117b04-9b40-4413-bcca-0c6d768d3e0e.png" 
+                  src="/agtech-uploads/05117b04-9b40-4413-bcca-0c6d768d3e0e.png" 
                   alt="AgTechDesigne" 
                   className="relative z-10 rounded-lg shadow-xl w-full h-auto"
                 />
