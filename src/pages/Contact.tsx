@@ -35,10 +35,10 @@ export default function Contatto() {
     // Invia il modulo tramite EmailJS
     if (formRef.current) {
       emailjs.sendForm(
-        'service_hbn7rog',
-        'Autoreplaywebsite',
+        'service_hbn7rog',    // ID del servizio EmailJS
+        'template_oe1iwxq',   // Nuovo template ID
         formRef.current,
-        'Ts44-OGlmsSUV73rR'
+        'Ts44-OGlmsSUV73rR'   // ID dell'utente EmailJS
       )
         .then((result) => {
           console.log('Email inviata con successo!', result.text);
@@ -267,7 +267,7 @@ export default function Contatto() {
                   <button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-agtech-blue text-white px-6 py-3 text-lg font-semibold rounded-lg hover:bg-agtech-blue/90 disabled:opacity-50 transition-opacity"
+                    className="w-full py-3 px-4 bg-agtech-blue text-white font-bold rounded-lg hover:bg-agtech-blue/80 focus:outline-none focus:ring-2 focus:ring-agtech-blue transition-all disabled:opacity-50"
                   >
                     {isSubmitting ? "Invio..." : "Invia Messaggio"}
                   </button>
