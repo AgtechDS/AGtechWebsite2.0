@@ -61,11 +61,11 @@ const Footer = () => {
             <h3 className="text-lg font-semibold mb-4">Contatti</h3>
             <div className="space-y-3">
               <a 
-                href="mailto:agtechdesigne@gmail.com" 
+                href="mailto:info@agtechdesigne.com" 
                 className="flex items-center text-gray-300 hover:text-agtech-green transition-colors duration-300"
               >
                 <Mail className="h-5 w-5 mr-2" />
-                agtechdesigne@gmail.com
+                info@agtechdesigne.com
               </a>
               <div className="flex space-x-4 pt-2">
                 <a 
