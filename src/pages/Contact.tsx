@@ -157,12 +157,12 @@ export default function Contatto() {
                       <div>
                         <h3 className="font-medium text-lg">WhatsApp</h3>
                         <a 
-                          href="https://wa.me/393455268238" 
+                          href="https://wa.me/393278028502" 
                           target="_blank" 
                           rel="noopener noreferrer"
                           className="text-gray-600 hover:text-green-600 transition-colors"
                         >
-                          +39 345 526 8238
+                          +39 3278028502
                         </a>
                       </div>
                     </div>
