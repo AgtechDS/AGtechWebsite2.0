@@ -1,6 +1,10 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+/* Import fonts and theme first */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100;200;300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap');
+@import './styles/modern-theme.css';
 
 @tailwind base;
 @tailwind components;
@@ -104,32 +108,112 @@
 }
 
 @layer components {
+  /* Glassmorphism avanzato */
   .glass-card {
-    @apply bg-white bg-opacity-10 backdrop-blur-lg border border-white/10 rounded-xl shadow-lg hover:shadow-glow transition-all duration-300;
+    @apply bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl shadow-glass hover:shadow-glow-blue transition-all duration-500;
+    background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
   }
 
+  .glass-card-dark {
+    @apply bg-black/10 backdrop-blur-xl border border-white/10 rounded-2xl shadow-glass hover:shadow-glow-purple transition-all duration-500;
+    background: linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(0,0,0,0.05) 100%);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+
+  /* Neumorphism */
+  .neuro-card {
+    @apply bg-gray-100 dark:bg-gray-800 rounded-2xl transition-all duration-300;
+    box-shadow: 20px 20px 60px #d1d9e6, -20px -20px 60px #ffffff;
+  }
+
+  .neuro-card:hover {
+    box-shadow: inset 20px 20px 60px #d1d9e6, inset -20px -20px 60px #ffffff;
+  }
+
+  .dark .neuro-card {
+    box-shadow: 20px 20px 60px #0a0a0a, -20px -20px 60px #1a1a1a;
+  }
+
+  .dark .neuro-card:hover {
+    box-shadow: inset 20px 20px 60px #0a0a0a, inset -20px -20px 60px #1a1a1a;
+  }
+
+  /* Bottoni moderni con effetti avanzati */
   .primary-button {
-    @apply bg-agtech-blue hover:bg-opacity-90 text-white font-medium px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
+    @apply relative overflow-hidden bg-gradient-to-r from-agtech-blue-600 to-agtech-blue-800 hover:from-agtech-blue-700 hover:to-agtech-blue-900 text-white font-semibold px-8 py-3 rounded-xl shadow-3d hover:shadow-glow-blue transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
+  }
+
+  .primary-button::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-white/20 to-transparent opacity-0 transition-opacity duration-300;
+  }
+
+  .primary-button:hover::before {
+    @apply opacity-100;
   }
 
   .secondary-button {
-    @apply bg-agtech-purple hover:bg-opacity-90 text-white font-medium px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
+    @apply relative overflow-hidden bg-gradient-to-r from-agtech-purple-600 to-agtech-purple-800 hover:from-agtech-purple-700 hover:to-agtech-purple-900 text-white font-semibold px-8 py-3 rounded-xl shadow-3d hover:shadow-glow-purple transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
   }
 
   .accent-button {
-    @apply bg-agtech-green hover:bg-opacity-90 text-white font-medium px-6 py-2.5 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
+    @apply relative overflow-hidden bg-gradient-to-r from-agtech-green-500 to-agtech-green-700 hover:from-agtech-green-600 hover:to-agtech-green-800 text-white font-semibold px-8 py-3 rounded-xl shadow-3d hover:shadow-glow-green transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98];
   }
 
+  /* Bottone ghost moderno */
+  .ghost-button {
+    @apply relative overflow-hidden bg-transparent border-2 border-agtech-blue-500 text-agtech-blue-500 hover:text-white font-semibold px-8 py-3 rounded-xl transition-all duration-300 transform hover:scale-[1.02];
+  }
+
+  .ghost-button::before {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-agtech-blue-500 to-agtech-blue-700 transform scale-x-0 origin-left transition-transform duration-300;
+  }
+
+  .ghost-button:hover::before {
+    @apply scale-x-100;
+  }
+
+  .ghost-button span {
+    @apply relative z-10;
+  }
+
+  /* Effetti di testo avanzati */
   .title-underline {
     @apply relative inline-block;
   }
 
   .title-underline::after {
-    @apply content-[''] block absolute w-0 h-[2px] bg-agtech-green mt-1 transition-all duration-500 ease-in-out;
+    content: '';
+    @apply absolute bottom-0 left-0 w-0 h-1 bg-gradient-to-r from-agtech-green-500 to-agtech-blue-500 transition-all duration-700 ease-out;
   }
 
   .title-underline:hover::after {
     @apply w-full;
+  }
+
+  .gradient-text {
+    @apply bg-gradient-to-r from-agtech-blue-600 via-agtech-purple-600 to-agtech-green-600 bg-clip-text text-transparent;
+  }
+
+  .cyber-text {
+    @apply text-transparent bg-clip-text;
+    background-image: linear-gradient(45deg, #00ffff, #ff00ff, #ffff00, #00ffff);
+    background-size: 400% 400%;
+    animation: gradient-shift 3s ease infinite;
+  }
+
+  .holographic-text {
+    @apply relative;
+    background: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
+    background-size: 400% 400%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: holographic 4s ease-in-out infinite;
   }
 
   .animate-enter {
@@ -154,10 +238,137 @@
   }
 }
 
+/* Keyframes avanzati per animazioni moderne */
 @keyframes enter {
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes gradient-shift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+
+@keyframes holographic {
+  0%, 100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg);
+  }
+  25% {
+    background-position: 100% 50%;
+    filter: hue-rotate(90deg);
+  }
+  50% {
+    background-position: 100% 100%;
+    filter: hue-rotate(180deg);
+  }
+  75% {
+    background-position: 0% 100%;
+    filter: hue-rotate(270deg);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-20px); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 255, 255, 0.5);
+  }
+  50% {
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6);
+  }
+}
+
+@keyframes morphing {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50% { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+
+@keyframes particle-float {
+  0% {
+    transform: translateY(100vh) translateX(0px) rotate(0deg);
+    opacity: 0;
+  }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% {
+    transform: translateY(-100px) translateX(100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+@keyframes cyber-scan {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100vw); }
+}
+
+@keyframes data-stream {
+  0% { transform: translateY(-100%) scaleY(0); }
+  50% { transform: translateY(50vh) scaleY(1); }
+  100% { transform: translateY(100vh) scaleY(0); }
+}
+
+/* Utility classes */
+.perspective-1000 {
+  perspective: 1000px;
+}
+
+.transform-style-preserve-3d {
+  transform-style: preserve-3d;
+}
+
+/* Responsive improvements */
+@media (max-width: 768px) {
+  .glass-card {
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .primary-button, .secondary-button, .accent-button {
+    @apply px-6 py-2.5 text-sm;
+  }
+
+  .gradient-text {
+    background-size: 200% 200%;
+    animation: gradient-shift 3s ease infinite;
+  }
+}
+
+/* Dark mode improvements */
+@media (prefers-color-scheme: dark) {
+  .glass-card {
+    background: linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.1) 100%);
+  }
+
+  .neuro-card {
+    box-shadow: 20px 20px 60px #0a0a0a, -20px -20px 60px #1a1a1a;
+  }
+}
+
+/* Performance optimizations */
+.gpu-accelerated {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+/* Accessibility improvements */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .matrix-rain,
+  .particle-float,
+  .cyber-scan,
+  .data-stream {
+    animation: none !important;
   }
 }
 

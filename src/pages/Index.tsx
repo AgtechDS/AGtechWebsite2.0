@@ -2,8 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import { Link } from "react-router-dom";
 import MatrixBackground from "@/components/MatrixBackground";
+import ParticleSystem from "@/components/ParticleSystem";
+import Scene3D from "@/components/Scene3D";
 import ServiceCard from "@/components/ServiceCard";
-import { Server, Code, Database, Award, Users, ArrowRight, ChevronDown } from "lucide-react";
+import TestimonialCard from "@/components/TestimonialCard";
+import RoseAI from "@/components/RoseAI";
+import { Server, Code, Database, Award, Users, ArrowRight, ChevronDown, Sparkles, Zap } from "lucide-react";
 
 const Index = () => {
   const heroRef = useRef<HTMLDivElement>(null);
@@ -134,21 +138,35 @@ const Index = () => {
   const testimonials = [
     {
       name: "Marco Rossi",
-      role: "CEO, TechInnovate",
-      content: "AgTechDesigne ha trasformato completamente il nostro approccio all'analisi dati. Le soluzioni personalizzate hanno migliorato l'efficienza del 40%.",
-      image: "https://randomuser.me/api/portraits/men/32.jpg"
+      role: "CEO",
+      company: "TechInnovate",
+      content: "AgTechDesigne ha trasformato completamente il nostro approccio all'analisi dati. Le soluzioni personalizzate hanno migliorato l'efficienza del 40% e ridotto i costi operativi del 25%.",
+      image: "https://randomuser.me/api/portraits/men/32.jpg",
+      rating: 5
     },
     {
       name: "Laura Bianchi",
-      role: "CTO, DataSphere",
-      content: "La competenza tecnica e la capacità di comprendere le nostre esigenze hanno reso AgTechDesigne il partner ideale per i nostri progetti di AI.",
-      image: "https://randomuser.me/api/portraits/women/44.jpg"
+      role: "CTO",
+      company: "DataSphere",
+      content: "La competenza tecnica e la capacità di comprendere le nostre esigenze hanno reso AgTechDesigne il partner ideale per i nostri progetti di AI. Risultati eccezionali in tempi record.",
+      image: "https://randomuser.me/api/portraits/women/44.jpg",
+      rating: 5
     },
     {
       name: "Giovanni Verdi",
-      role: "Direttore IT, InnovaGroup",
-      content: "Professionalità, puntualità e soluzioni innovative. AgTechDesigne ha superato ogni nostra aspettativa.",
-      image: "https://randomuser.me/api/portraits/men/67.jpg"
+      role: "Direttore IT",
+      company: "InnovaGroup",
+      content: "Professionalità, puntualità e soluzioni innovative. AgTechDesigne ha superato ogni nostra aspettativa, consegnando un sistema che ha rivoluzionato i nostri processi interni.",
+      image: "https://randomuser.me/api/portraits/men/67.jpg",
+      rating: 5
+    },
+    {
+      name: "Sofia Chen",
+      role: "Product Manager",
+      company: "FutureTech",
+      content: "L'approccio innovativo di AgTechDesigne all'automazione dei dati ci ha permesso di scalare il nostro business del 300% mantenendo la qualità del servizio.",
+      image: "https://randomuser.me/api/portraits/women/68.jpg",
+      rating: 5
     }
   ];
 
@@ -161,12 +179,37 @@ const Index = () => {
         ref={heroRef}
         className="relative min-h-screen flex items-center justify-center overflow-hidden pt-16"
       >
-        {/* Advanced background with particles and grid */}
+        {/* Advanced background with multiple layers */}
         <div className="absolute inset-0 z-0">
-          <MatrixBackground intensity={5} speed={5} opacity={0.08} />
-          
-          {/* Animated grid overlay */}
-          <div className="absolute inset-0 bg-grid-pattern opacity-20"></div>
+          <MatrixBackground
+            intensity={6}
+            speed={4}
+            opacity={0.12}
+            variant="neural"
+            interactive={true}
+            colors={['#001F3F', '#6C5B7B', '#4CAF50', '#00ffff']}
+          />
+
+          {/* Particle system overlay */}
+          <ParticleSystem
+            particleCount={80}
+            colors={['rgba(0,31,63,0.6)', 'rgba(108,91,123,0.6)', 'rgba(76,175,80,0.6)']}
+            speed={1.5}
+            interactive={true}
+            className="opacity-40"
+          />
+
+          {/* Cyber grid pattern */}
+          <div
+            className="absolute inset-0 opacity-10"
+            style={{
+              backgroundImage: `
+                linear-gradient(rgba(0,255,255,0.1) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0,255,255,0.1) 1px, transparent 1px)
+              `,
+              backgroundSize: '50px 50px'
+            }}
+          ></div>
           
           {/* Animated glowing orbs */}
           {[...Array(6)].map((_, i) => (
@@ -247,22 +290,42 @@ const Index = () => {
           className="container mx-auto px-4 md:px-6 relative z-20 text-center"
           style={{ opacity, scale, y }}
         >
+          {/* Rose AI Inline */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="inline-block mb-4 px-4 py-1 rounded-full bg-white/10 backdrop-blur-sm border border-white/20"
+            className="mb-6"
           >
-            <span className="text-white/90 font-medium">Innovazione tecnologica per il tuo business</span>
+            <RoseAI
+              variant="inline"
+              showIcon={true}
+              animated={false}
+              className="border border-white/30"
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            className="inline-flex items-center gap-2 mb-6 px-6 py-2 rounded-full glass-card border border-white/30"
+          >
+            <Sparkles className="w-4 h-4 text-agtech-green-400" />
+            <span className="text-white/90 font-medium tracking-wide">Innovazione tecnologica per il tuo business</span>
+            <Zap className="w-4 h-4 text-agtech-blue-400" />
           </motion.div>
           
-          <motion.h1 
-            className="text-4xl md:text-5xl lg:text-6xl text-white font-serif font-bold mb-6 drop-shadow-lg"
-            initial={{ opacity: 0, y: 20 }}
+          <motion.h1
+            className="text-5xl md:text-6xl lg:text-7xl text-white font-display font-bold mb-8 leading-tight"
+            initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Innovazione e Tecnologia
+            <span className="block">Innovazione</span>
+            <span className="block gradient-text bg-gradient-to-r from-agtech-green-400 via-agtech-blue-400 to-agtech-purple-400 bg-clip-text text-transparent">
+              & Tecnologia
+            </span>
           </motion.h1>
           
           <motion.p 
@@ -274,18 +337,22 @@ const Index = () => {
             Sviluppiamo soluzioni digitali avanzate per il tuo successo.
           </motion.p>
           
-          <motion.div 
-            className="flex flex-col sm:flex-row gap-4 justify-center"
+          <motion.div
+            className="flex flex-col sm:flex-row gap-6 justify-center"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
           >
-            <Link to="/servizi" className="primary-button backdrop-blur-sm bg-agtech-blue/80 hover:bg-agtech-blue group">
-              <span>Scopri i nostri servizi</span>
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+            <Link to="/servizi" className="group relative overflow-hidden">
+              <div className="primary-button flex items-center">
+                <span>Scopri i nostri servizi</span>
+                <ArrowRight className="w-5 h-5 ml-2 transition-transform group-hover:translate-x-1" />
+              </div>
             </Link>
-            <Link to="/contatti" className="secondary-button backdrop-blur-sm bg-white/10 hover:bg-white/20">
-              Contattaci ora
+            <Link to="/contatti" className="group relative overflow-hidden">
+              <div className="ghost-button">
+                <span>Contattaci ora</span>
+              </div>
             </Link>
           </motion.div>
           
@@ -305,10 +372,62 @@ const Index = () => {
         </motion.div>
       </section>
 
+      {/* 3D Interactive Section */}
+      <section className="py-24 bg-gradient-to-b from-black/5 to-agtech-blue/10 relative overflow-hidden">
+        <div className="container mx-auto px-4 md:px-6">
+          <motion.div
+            className="text-center mb-12"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+          >
+            <h2 className="text-4xl font-serif font-bold mb-4 gradient-text">Esperienza Immersiva</h2>
+            <p className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto">
+              Esplora le nostre tecnologie attraverso un'esperienza 3D interattiva
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, scale: 0.9 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 1 }}
+            viewport={{ once: true }}
+            className="relative rounded-2xl overflow-hidden shadow-3d"
+          >
+            <Scene3D height="500px" className="rounded-2xl" />
+
+            {/* Rose CEO AI sovrapposta */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none z-10">
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                whileInView={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 1.2, delay: 0.5 }}
+                viewport={{ once: true }}
+              >
+                <RoseAI
+                  variant="floating"
+                  showIcon={true}
+                  animated={true}
+                  showTyping={true}
+                  messages={[
+                    "Benvenuti nel futuro dell'innovazione",
+                    "Sono Rose, la vostra CEO AI",
+                    "Esplorate le nostre tecnologie 3D",
+                    "Insieme verso il successo digitale"
+                  ]}
+                  className="pointer-events-auto"
+                />
+              </motion.div>
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
       {/* Stats Section */}
-      <section 
+      <section
         ref={statsRef}
-        className="py-16 bg-gradient-to-r from-agtech-blue/5 to-agtech-purple/5"
+        className="py-20 bg-gradient-to-r from-agtech-blue/5 to-agtech-purple/5 relative"
       >
         <div className="container mx-auto px-4 md:px-6">
           <motion.div 
@@ -324,21 +443,25 @@ const Index = () => {
           </motion.div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <motion.div 
-              className="text-center p-8 rounded-xl backdrop-blur-sm bg-white/50 dark:bg-white/5 shadow-lg border border-gray-200 dark:border-white/10 hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02]"
+            <motion.div
+              className="text-center p-10 rounded-2xl glass-card hover:shadow-glow-blue transition-all duration-500 transform hover:scale-[1.05] group"
               initial={{ opacity: 0, y: 20 }}
               animate={isStatsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5 }}
-              whileHover={{ 
-                boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04)",
-                backgroundColor: "rgba(255, 255, 255, 0.6)"
+              whileHover={{
+                y: -10,
+                transition: { duration: 0.3 }
               }}
             >
-              <div className="inline-flex items-center justify-center w-16 h-16 mb-4 rounded-full bg-agtech-blue/10 text-agtech-blue">
-                <Award className="w-8 h-8" />
-              </div>
-              <div className="text-4xl md:text-5xl font-bold text-agtech-blue mb-2">{count1}+</div>
-              <div className="text-lg font-medium text-gray-700 dark:text-gray-300">Progetti completati</div>
+              <motion.div
+                className="inline-flex items-center justify-center w-20 h-20 mb-6 rounded-2xl bg-gradient-to-br from-agtech-blue-500 to-agtech-blue-700 text-white shadow-glow-blue group-hover:shadow-glow-blue"
+                whileHover={{ rotate: 360 }}
+                transition={{ duration: 0.6 }}
+              >
+                <Award className="w-10 h-10" />
+              </motion.div>
+              <div className="text-5xl md:text-6xl font-bold gradient-text mb-3">{count1}+</div>
+              <div className="text-xl font-semibold text-gray-700 dark:text-gray-300">Progetti completati</div>
             </motion.div>
             
             <motion.div 
@@ -458,15 +581,17 @@ const Index = () => {
               animate={isServicesVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.1 }}
             >
-              <ServiceCard 
+              <ServiceCard
                 icon={Server}
                 title="AI & Computing"
-                description="Soluzioni di computing distribuite e modelli AI personalizzati per ottimizzare i tuoi processi."
+                description="Soluzioni di computing distribuite e modelli AI personalizzati per ottimizzare i tuoi processi aziendali."
                 hoverColor="hover:bg-agtech-blue/10"
                 link="/servizi/ai-computing"
                 delay={0}
                 badge="Innovativo"
                 badgeColor="bg-agtech-blue/20 text-agtech-blue"
+                features={["Machine Learning", "Deep Learning", "Computer Vision", "NLP"]}
+                gradient="from-agtech-blue-500 to-agtech-blue-700"
               />
             </motion.div>
             
@@ -475,15 +600,17 @@ const Index = () => {
               animate={isServicesVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.2 }}
             >
-              <ServiceCard 
+              <ServiceCard
                 icon={Code}
                 title="Sviluppo Software"
-                description="Software su misura sviluppato con Python, JavaScript, C++, Rust e Go per ogni esigenza."
+                description="Software su misura sviluppato con tecnologie moderne per trasformare le tue idee in realtà digitale."
                 hoverColor="hover:bg-agtech-purple/10"
                 link="/servizi/sviluppo-software"
                 delay={2}
                 badge="Personalizzato"
                 badgeColor="bg-agtech-purple/20 text-agtech-purple"
+                features={["React/Next.js", "Python/Django", "Node.js", "Mobile Apps"]}
+                gradient="from-agtech-purple-500 to-agtech-purple-700"
               />
             </motion.div>
             
@@ -492,15 +619,17 @@ const Index = () => {
               animate={isServicesVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
               transition={{ duration: 0.6, delay: 0.3 }}
             >
-              <ServiceCard 
+              <ServiceCard
                 icon={Database}
                 title="Automazione Dati"
-                description="Soluzioni Excel personalizzate e automazioni per migliorare l'analisi e la gestione dei dati."
+                description="Trasforma i tuoi dati in insights azionabili con soluzioni di automazione intelligente e analytics avanzati."
                 hoverColor="hover:bg-agtech-green/10"
                 link="/servizi/automazione-dati"
                 delay={4}
                 badge="Efficiente"
                 badgeColor="bg-agtech-green/20 text-agtech-green"
+                features={["Data Analytics", "Excel Automation", "Business Intelligence", "ETL Pipelines"]}
+                gradient="from-agtech-green-500 to-agtech-green-700"
               />
             </motion.div>
           </div>
@@ -511,141 +640,210 @@ const Index = () => {
             animate={isServicesVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.5, delay: 0.4 }}
           >
-            <Link 
-              to="/servizi" 
-              className="inline-flex items-center px-6 py-3 rounded-lg bg-gradient-to-r from-agtech-blue to-agtech-purple text-white font-medium transition-all duration-300 shadow-md hover:shadow-lg group hover:scale-[1.02]"
+            <Link
+              to="/servizi"
+              className="primary-button inline-flex items-center gap-2"
             >
               <span>Esplora tutti i servizi</span>
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
+              <ArrowRight className="w-4 h-4 transition-transform group-hover:translate-x-1" />
             </Link>
           </motion.div>
         </div>
       </section>
 
       {/* Testimonials Section */}
-      <section 
+      <section
         ref={testimonialsRef}
-        className="py-24 bg-white dark:bg-agtech-blue/20 overflow-hidden"
+        className="py-24 bg-gradient-to-br from-gray-50 to-white dark:from-agtech-blue-900/20 dark:to-agtech-purple-900/20 overflow-hidden relative"
       >
-        <div className="container mx-auto px-4 md:px-6">
+        {/* Background decorative elements */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-20 left-10 w-72 h-72 bg-agtech-blue-500 rounded-full blur-3xl"></div>
+          <div className="absolute bottom-20 right-10 w-72 h-72 bg-agtech-purple-500 rounded-full blur-3xl"></div>
+        </div>
+
+        <div className="container mx-auto px-4 md:px-6 relative z-10">
           <div className="text-center mb-16">
-            <motion.h2 
-              className="text-3xl font-serif font-bold mb-4 title-underline inline-block"
+            <motion.h2
+              className="text-4xl md:text-5xl font-serif font-bold mb-6 gradient-text"
               initial={{ opacity: 0, y: 20 }}
               animate={isTestimonialsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5 }}
             >
               Cosa Dicono i Nostri Clienti
             </motion.h2>
-            <motion.p 
-              className="text-lg text-gray-700 dark:text-gray-300 max-w-3xl mx-auto"
+            <motion.p
+              className="text-xl text-gray-700 dark:text-gray-300 max-w-3xl mx-auto"
               initial={{ opacity: 0, y: 20 }}
               animate={isTestimonialsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.5, delay: 0.1 }}
             >
-              La soddisfazione dei nostri clienti è la nostra priorità. Ecco alcune testimonianze di chi ha scelto di lavorare con noi.
+              La soddisfazione dei nostri clienti è la nostra priorità. Ecco le testimonianze di chi ha trasformato il proprio business con noi.
             </motion.p>
           </div>
-          
-          <div className="relative">
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={activeTestimonial}
-                initial={{ opacity: 0, x: 100 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: -100 }}
-                transition={{ duration: 0.5 }}
-                className="max-w-4xl mx-auto"
-              >
-                <div className="bg-white dark:bg-agtech-blue/10 rounded-2xl shadow-xl p-8 md:p-10 border border-gray-100 dark:border-white/10">
-                  <div className="flex flex-col md:flex-row items-center md:items-start gap-6">
-                    <div className="flex-shrink-0">
-                      <img 
-                        src={testimonials[activeTestimonial].image} 
-                        alt={testimonials[activeTestimonial].name}
-                        className="w-20 h-20 rounded-full object-cover border-2 border-agtech-blue"
-                      />
-                    </div>
-                    <div>
-                      <div className="mb-4">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i} className="text-yellow-400">★</span>
-                        ))}
-                      </div>
-                      <p className="text-lg md:text-xl text-gray-700 dark:text-gray-300 italic mb-6">
-                        "{testimonials[activeTestimonial].content}"
-                      </p>
-                      <div>
-                        <h4 className="text-lg font-bold text-gray-900 dark:text-white">
-                          {testimonials[activeTestimonial].name}
-                        </h4>
-                        <p className="text-gray-600 dark:text-gray-400">
-                          {testimonials[activeTestimonial].role}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-            
-            <div className="flex justify-center mt-8 gap-2">
-              {testimonials.map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setActiveTestimonial(index)}
-                  className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                    activeTestimonial === index 
-                      ? 'bg-agtech-blue w-8' 
-                      : 'bg-gray-300 dark:bg-gray-600'
-                  }`}
-                  aria-label={`Testimonianza ${index + 1}`}
-                />
-              ))}
-            </div>
-            
-            <div className="flex justify-between mt-8">
-              <button 
-                onClick={() => setActiveTestimonial(prev => (prev === 0 ? testimonials.length - 1 : prev - 1))}
-                className="p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                aria-label="Testimonianza precedente"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
-                </svg>
-              </button>
-              <button 
-                onClick={() => setActiveTestimonial(prev => (prev === testimonials.length - 1 ? 0 : prev + 1))}
-                className="p-2 rounded-full bg-white dark:bg-gray-800 shadow-md hover:bg-gray-100 dark:hover:bg-gray-700 transition-colors"
-                aria-label="Testimonianza successiva"
-              >
-                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </button>
-            </div>
+
+          {/* Grid di testimonials */}
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-6xl mx-auto">
+            {testimonials.map((testimonial, index) => (
+              <TestimonialCard
+                key={index}
+                name={testimonial.name}
+                role={testimonial.role}
+                company={testimonial.company}
+                content={testimonial.content}
+                image={testimonial.image}
+                rating={testimonial.rating}
+                delay={index * 0.2}
+              />
+            ))}
           </div>
+
+          {/* Call to action */}
+          <motion.div
+            className="text-center mt-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={isTestimonialsVisible ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            transition={{ duration: 0.5, delay: 0.8 }}
+          >
+            <p className="text-lg text-gray-600 dark:text-gray-400 mb-6">
+              Vuoi essere il prossimo a raccontare la tua storia di successo?
+            </p>
+            <Link
+              to="/contatti"
+              className="primary-button inline-flex items-center gap-2"
+            >
+              <span>Inizia il tuo progetto</span>
+              <ArrowRight className="w-4 h-4" />
+            </Link>
+          </motion.div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-24 bg-gradient-to-r from-agtech-blue to-agtech-purple text-white relative">
-        <div className="absolute inset-0 bg-black/20 z-0"></div>
+      <section className="py-32 bg-gradient-to-br from-agtech-blue-900 via-agtech-purple-900 to-agtech-blue-800 text-white relative overflow-hidden">
+        {/* Background effects */}
+        <div className="absolute inset-0">
+          <ParticleSystem
+            particleCount={60}
+            colors={['rgba(255,255,255,0.3)', 'rgba(0,255,255,0.4)', 'rgba(255,0,255,0.3)']}
+            speed={0.5}
+            className="opacity-30"
+          />
+        </div>
+
+        {/* Animated background shapes */}
+        <div className="absolute inset-0">
+          {[...Array(6)].map((_, i) => (
+            <motion.div
+              key={i}
+              className="absolute rounded-full blur-3xl"
+              style={{
+                background: i % 2 === 0
+                  ? 'radial-gradient(circle, rgba(0,255,255,0.3) 0%, transparent 70%)'
+                  : 'radial-gradient(circle, rgba(255,0,255,0.3) 0%, transparent 70%)',
+                width: Math.random() * 400 + 200,
+                height: Math.random() * 400 + 200,
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+              }}
+              animate={{
+                x: [0, Math.random() * 100 - 50],
+                y: [0, Math.random() * 100 - 50],
+                scale: [1, 1.2, 1],
+                opacity: [0.3, 0.6, 0.3],
+              }}
+              transition={{
+                duration: Math.random() * 10 + 10,
+                repeat: Infinity,
+                repeatType: "reverse",
+                ease: "easeInOut",
+              }}
+            />
+          ))}
+        </div>
+
         <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
+            initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
+            className="max-w-4xl mx-auto"
           >
-            <h2 className="text-3xl md:text-4xl font-serif font-bold mb-6">Pronti a trasformare il tuo business?</h2>
-            <p className="text-xl mb-10 max-w-2xl mx-auto">
-              Contattaci oggi per scoprire come possiamo aiutarti a raggiungere i tuoi obiettivi tecnologici.
-            </p>
-            <Link to="/contatti" className="bg-white text-agtech-blue hover:bg-opacity-90 font-medium px-8 py-3 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.02] active:scale-[0.98] inline-flex items-center">
-              <span>Parlaci del tuo progetto</span>
-              <ArrowRight className="w-4 h-4 ml-2 transition-transform group-hover:translate-x-1" />
-            </Link>
+            <motion.h2
+              className="text-4xl md:text-6xl font-serif font-bold mb-8 leading-tight"
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              viewport={{ once: true }}
+            >
+              Pronti a <span className="holographic-text">Trasformare</span> il tuo Business?
+            </motion.h2>
+
+            <motion.p
+              className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed text-gray-200"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              viewport={{ once: true }}
+            >
+              Unisciti a centinaia di aziende che hanno già rivoluzionato i loro processi con le nostre soluzioni innovative.
+              Il futuro del tuo business inizia oggi.
+            </motion.p>
+
+            <motion.div
+              className="flex flex-col sm:flex-row gap-6 justify-center items-center"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              viewport={{ once: true }}
+            >
+              <Link
+                to="/contatti"
+                className="group relative overflow-hidden bg-white text-agtech-blue hover:text-white font-bold px-10 py-4 rounded-xl shadow-3d hover:shadow-glow-blue transition-all duration-300 transform hover:scale-[1.05] active:scale-[0.95]"
+              >
+                <span className="relative z-10 flex items-center gap-3">
+                  <Sparkles className="w-5 h-5" />
+                  Parlaci del tuo progetto
+                  <ArrowRight className="w-5 h-5 transition-transform group-hover:translate-x-1" />
+                </span>
+                <div className="absolute inset-0 bg-gradient-to-r from-agtech-blue-600 to-agtech-purple-600 transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
+              </Link>
+
+              <Link
+                to="/servizi"
+                className="ghost-button text-white border-white hover:bg-white hover:text-agtech-blue"
+              >
+                <span>Esplora i servizi</span>
+              </Link>
+            </motion.div>
+
+            {/* Stats preview */}
+            <motion.div
+              className="grid grid-cols-3 gap-8 mt-16 pt-16 border-t border-white/20"
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              viewport={{ once: true }}
+            >
+              {[
+                { number: "50+", label: "Progetti Completati" },
+                { number: "98%", label: "Clienti Soddisfatti" },
+                { number: "24/7", label: "Supporto Dedicato" }
+              ].map((stat, index) => (
+                <motion.div
+                  key={index}
+                  className="text-center"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  transition={{ delay: index * 0.1 + 1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="text-3xl md:text-4xl font-bold gradient-text mb-2">{stat.number}</div>
+                  <div className="text-gray-300 text-sm">{stat.label}</div>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       </section>

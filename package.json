@@ -1,12 +1,40 @@
 {
-  "name": "agtechdesignewebsite",
+  "name": "agtechdesigne-website",
   "private": true,
-  "version": "0.0.0",
+  "version": "2.0.0",
+  "description": "AgtechDesigne AI-Driven - Prima Azienda 100% Gestita da AI",
+  "author": "AgtechDesigne Team",
+  "license": "UNLICENSED",
+  "homepage": "https://agtechdesigne.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AgtechDS/AGtechWebsite2.0.git"
+  },
+  "keywords": [
+    "ai",
+    "artificial-intelligence",
+    "neural-network",
+    "react",
+    "typescript",
+    "vite",
+    "tailwindcss",
+    "framer-motion"
+  ],
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --host",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "build:prod": "node scripts/build.js",
+    "preview": "vite preview --host",
+    "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
+    "lint:fix": "eslint . --ext ts,tsx --fix",
+    "type-check": "tsc --noEmit",
+    "validate": "node scripts/validate-build.js",
+    "clean": "rm -rf dist node_modules/.vite",
+    "analyze": "npm run build && npx vite-bundle-analyzer dist",
+    "test": "echo \"Tests will be added in future versions\" && exit 0",
+    "deploy": "npm run build:prod && vercel --prod",
+    "deploy:preview": "npm run build:prod && vercel"
   },
   "dependencies": {
     "@emailjs/browser": "^4.4.1",

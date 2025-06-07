@@ -1,0 +1,279 @@
+/* Modern AgTech Theme - Futuristic Design System */
+
+/* CSS Variables per il nuovo tema */
+:root {
+  /* Colori primari futuristici */
+  --agtech-neon-blue: #00d4ff;
+  --agtech-neon-purple: #8b5cf6;
+  --agtech-neon-green: #00ff88;
+  --agtech-cyber-orange: #ff6b35;
+  --agtech-electric-pink: #ff0080;
+  
+  /* Gradients avanzati */
+  --gradient-cyber: linear-gradient(135deg, #00d4ff 0%, #8b5cf6 50%, #00ff88 100%);
+  --gradient-neural: linear-gradient(45deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+  --gradient-hologram: linear-gradient(45deg, #ff006e, #8338ec, #3a86ff, #06ffa5);
+  
+  /* Shadows futuristici */
+  --shadow-neon: 0 0 20px rgba(0, 212, 255, 0.5);
+  --shadow-cyber: 0 0 30px rgba(139, 92, 246, 0.4);
+  --shadow-neural: 0 20px 40px rgba(0, 0, 0, 0.3);
+  
+  /* Typography */
+  --font-cyber: 'Orbitron', 'Inter', monospace;
+  --font-neural: 'Exo 2', 'Inter', sans-serif;
+}
+
+/* Import font futuristici */
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;500;600;700&display=swap');
+
+/* Layout futuristico */
+.cyber-container {
+  position: relative;
+  background: var(--gradient-neural);
+  overflow: hidden;
+}
+
+.cyber-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: 
+    radial-gradient(circle at 20% 80%, rgba(0, 212, 255, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.1) 0%, transparent 50%),
+    radial-gradient(circle at 40% 40%, rgba(0, 255, 136, 0.05) 0%, transparent 50%);
+  pointer-events: none;
+}
+
+/* Cards futuristiche */
+.neural-card {
+  background: rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  border-radius: 20px;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.neural-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 212, 255, 0.1), transparent);
+  transition: left 0.6s;
+}
+
+.neural-card:hover::before {
+  left: 100%;
+}
+
+.neural-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: var(--shadow-neon);
+  border-color: var(--agtech-neon-blue);
+}
+
+/* Bottoni cyber */
+.cyber-button {
+  position: relative;
+  background: transparent;
+  border: 2px solid var(--agtech-neon-blue);
+  color: var(--agtech-neon-blue);
+  padding: 12px 32px;
+  font-family: var(--font-cyber);
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+  clip-path: polygon(0 0, calc(100% - 20px) 0, 100% 100%, 20px 100%);
+}
+
+.cyber-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: var(--gradient-cyber);
+  transition: left 0.3s ease;
+  z-index: -1;
+}
+
+.cyber-button:hover::before {
+  left: 0;
+}
+
+.cyber-button:hover {
+  color: #000;
+  box-shadow: var(--shadow-neon);
+  transform: scale(1.05);
+}
+
+/* Testo holografico avanzato */
+.hologram-text {
+  background: var(--gradient-hologram);
+  background-size: 400% 400%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: hologram-shift 4s ease-in-out infinite;
+  font-family: var(--font-cyber);
+  font-weight: 900;
+  text-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+
+@keyframes hologram-shift {
+  0%, 100% {
+    background-position: 0% 50%;
+    filter: hue-rotate(0deg) brightness(1) saturate(1);
+  }
+  25% {
+    background-position: 100% 50%;
+    filter: hue-rotate(90deg) brightness(1.2) saturate(1.1);
+  }
+  50% {
+    background-position: 100% 100%;
+    filter: hue-rotate(180deg) brightness(0.8) saturate(0.9);
+  }
+  75% {
+    background-position: 0% 100%;
+    filter: hue-rotate(270deg) brightness(1.1) saturate(1.05);
+  }
+}
+
+/* Grid cyber */
+.cyber-grid {
+  background-image: 
+    linear-gradient(rgba(0, 212, 255, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.1) 1px, transparent 1px);
+  background-size: 50px 50px;
+  position: relative;
+}
+
+.cyber-grid::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
+}
+
+/* Animazioni neural */
+@keyframes neural-pulse {
+  0%, 100% { 
+    opacity: 0.3;
+    transform: scale(1);
+  }
+  50% { 
+    opacity: 1;
+    transform: scale(1.1);
+  }
+}
+
+@keyframes data-flow {
+  0% { 
+    transform: translateX(-100%) scaleX(0);
+  }
+  50% { 
+    transform: translateX(0%) scaleX(1);
+  }
+  100% { 
+    transform: translateX(100%) scaleX(0);
+  }
+}
+
+@keyframes cyber-glitch {
+  0%, 100% { 
+    transform: translate(0);
+    filter: hue-rotate(0deg);
+  }
+  20% { 
+    transform: translate(-2px, 2px);
+    filter: hue-rotate(90deg);
+  }
+  40% { 
+    transform: translate(-2px, -2px);
+    filter: hue-rotate(180deg);
+  }
+  60% { 
+    transform: translate(2px, 2px);
+    filter: hue-rotate(270deg);
+  }
+  80% { 
+    transform: translate(2px, -2px);
+    filter: hue-rotate(360deg);
+  }
+}
+
+/* Effetti di loading futuristici */
+.neural-loader {
+  width: 60px;
+  height: 60px;
+  border: 3px solid transparent;
+  border-top: 3px solid var(--agtech-neon-blue);
+  border-right: 3px solid var(--agtech-neon-purple);
+  border-radius: 50%;
+  animation: neural-spin 1s linear infinite;
+  position: relative;
+}
+
+.neural-loader::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border: 3px solid transparent;
+  border-bottom: 3px solid var(--agtech-neon-green);
+  border-left: 3px solid var(--agtech-cyber-orange);
+  border-radius: 50%;
+  animation: neural-spin 1.5s linear infinite reverse;
+}
+
+@keyframes neural-spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Responsive futuristico */
+@media (max-width: 768px) {
+  .cyber-button {
+    padding: 10px 24px;
+    font-size: 14px;
+    letter-spacing: 1px;
+  }
+  
+  .neural-card {
+    border-radius: 15px;
+  }
+  
+  .hologram-text {
+    font-size: clamp(1.5rem, 5vw, 3rem);
+  }
+}
+
+/* Dark mode ottimizzato */
+@media (prefers-color-scheme: dark) {
+  .neural-card {
+    background: rgba(0, 0, 0, 0.3);
+    border-color: rgba(0, 212, 255, 0.3);
+  }
+  
+  .cyber-grid {
+    background-image: 
+      linear-gradient(rgba(0, 212, 255, 0.15) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(0, 212, 255, 0.15) 1px, transparent 1px);
+  }
+}

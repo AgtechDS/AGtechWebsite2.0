@@ -1,18 +1,27 @@
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
+import { motion } from "framer-motion";
 
 interface MatrixBackgroundProps {
   intensity?: number; // Intensità delle gocce (1-10)
   speed?: number; // Velocità delle gocce (1-10)
   opacity?: number; // Opacità delle gocce (0-1)
+  variant?: 'classic' | 'cyber' | 'neural' | 'holographic';
+  interactive?: boolean;
+  colors?: string[];
 }
 
-const MatrixBackground = ({ 
-  intensity = 5, 
-  speed = 5, 
-  opacity = 0.05 
+const MatrixBackground = ({
+  intensity = 5,
+  speed = 5,
+  opacity = 0.05,
+  variant = 'classic',
+  interactive = false,
+  colors = ['#4CAF50', '#00ffff', '#ff00ff']
 }: MatrixBackgroundProps) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
+  const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
     const canvas = canvasRef.current;
@@ -29,17 +38,34 @@ const MatrixBackground = ({
     window.addEventListener("resize", handleResize);
     handleResize();
 
-    // Caratteri per l'effetto matrix
-    const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+    // Caratteri per diversi varianti
+    const getCharacters = () => {
+      switch (variant) {
+        case 'cyber':
+          return "01ﾊﾐﾋｰｳｼﾅﾓﾆｻﾜﾂｵﾘｱﾎﾃﾏｹﾒｴｶｷﾑﾕﾗｾﾈｽﾀﾇﾍ";
+        case 'neural':
+          return "⚡⚙⚛⚜⚠⚡⚙⚛⚜⚠ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+        case 'holographic':
+          return "◆◇◈◉◊○●◐◑◒◓◔◕◖◗◘◙◚◛◜◝◞◟◠◡◢◣◤◥◦◧◨◩◪◫◬◭◮◯";
+        default:
+          return "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+      }
+    };
+
+    const characters = getCharacters();
     const drops: number[] = [];
+    const dropSpeeds: number[] = [];
+    const dropColors: string[] = [];
 
     // Numero di colonne basato sull'intensità (1-10)
     const fontSize = 14;
     const columns = Math.floor(canvas.width / fontSize * (intensity / 5));
 
-    // Inizializza le gocce
+    // Inizializza le gocce con proprietà avanzate
     for (let i = 0; i < columns; i++) {
       drops[i] = Math.floor(Math.random() * canvas.height);
+      dropSpeeds[i] = Math.random() * 2 + 0.5; // Velocità variabile
+      dropColors[i] = colors[Math.floor(Math.random() * colors.length)];
     }
 
     // Velocità di aggiornamento basata sulla velocità (1-10)

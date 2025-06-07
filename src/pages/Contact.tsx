@@ -1,5 +1,5 @@
 import { useState, ReactNode, useRef } from "react";
-import { CheckCircle2, Mail, Phone, MapPin, Send, Instagram, Facebook, MessageSquare, BrandTelegram } from "lucide-react";
+import { CheckCircle2, Mail, Phone, MapPin, Send, Instagram, Facebook, MessageSquare, BrandTelegram, Zap, Shield, Cpu } from "lucide-react";
 import { useToast } from "@/components/ui/use-toast";
 import { motion } from "framer-motion";
 import emailjs from '@emailjs/browser';
@@ -71,33 +71,55 @@ export default function Contatto() {
   };
 
   return (
-    <div className="pt-16">
-      {/* Sezione Hero migliorata con Particelle */}
-      <section className="relative py-28 bg-gradient-to-b from-agtech-blue to-agtech-purple text-white overflow-hidden">
-        {/* Particelle animate per effetto di sfondo */}
+    <div className="min-h-screen">
+      {/* Hero Section Futuristico */}
+      <section className="relative py-32 cyber-container text-white overflow-hidden">
+        {/* Neural Communication Network */}
         <div className="absolute inset-0 z-0">
-          {[...Array(20)].map((_, i) => (
+          {[...Array(10)].map((_, i) => (
             <motion.div
-              key={i}
-              className="absolute rounded-full bg-white/10"
+              key={`contact-node-${i}`}
+              className="absolute"
               style={{
-                width: Math.random() * 20 + 5,
-                height: Math.random() * 20 + 5,
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
+                left: `${15 + (i % 3) * 35}%`,
+                top: `${20 + Math.floor(i / 3) * 25}%`,
               }}
               animate={{
-                y: [0, Math.random() * -100 - 50],
-                opacity: [0, 0.7, 0],
+                y: [0, -10, 0],
+                scale: [1, 1.1, 1],
+                opacity: [0.4, 0.8, 0.4],
               }}
               transition={{
-                duration: Math.random() * 5 + 5,
+                duration: 3 + Math.random() * 2,
                 repeat: Infinity,
-                ease: "easeInOut",
+                delay: i * 0.4,
               }}
-            />
+            >
+              <div className="neural-card p-4 flex items-center justify-center">
+                <Mail className="w-4 h-4 text-cyan-400" />
+              </div>
+
+              {/* Connection lines */}
+              {i < 7 && (
+                <motion.div
+                  className="absolute top-1/2 left-full w-16 h-0.5 bg-gradient-to-r from-cyan-400/60 to-transparent"
+                  animate={{
+                    scaleX: [0, 1, 0],
+                    opacity: [0, 1, 0]
+                  }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    delay: i * 0.3
+                  }}
+                />
+              )}
+            </motion.div>
           ))}
         </div>
+
+        {/* Cyber grid pattern */}
+        <div className="cyber-grid absolute inset-0 opacity-15"></div>
 
         <div className="container mx-auto px-4 md:px-6 text-center relative z-10">
           <motion.div
@@ -105,21 +127,47 @@ export default function Contatto() {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-6xl font-serif font-bold mb-6">
-              Contattaci
+            <h1 className="text-5xl md:text-7xl font-cyber font-black mb-8">
+              <span className="hologram-text">CONTATTACI</span>
             </h1>
-            <p className="text-xl max-w-3xl mx-auto mb-8 text-white/90">
-              Siamo sempre disponibili per rispondere alle tue domande e discutere dei tuoi progetti.
+            <p className="text-xl md:text-2xl max-w-4xl mx-auto mb-12 text-cyan-300 leading-relaxed font-light">
+              Siamo sempre <span className="text-green-400 font-semibold">online</span> e pronti a
+              <span className="text-purple-400 font-semibold"> trasformare</span> le tue idee in
+              <span className="text-cyan-400 font-semibold">realtà digitale</span>.
             </p>
+
+            {/* Contact Methods */}
+            <motion.div
+              className="grid grid-cols-3 gap-6 max-w-2xl mx-auto"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+            >
+              {[
+                { icon: Mail, label: "EMAIL", desc: "INSTANT", color: "text-cyan-400" },
+                { icon: MessageSquare, label: "CHAT", desc: "REAL-TIME", color: "text-green-400" },
+                { icon: Send, label: "DIRECT", desc: "CONNECT", color: "text-purple-400" }
+              ].map((method, index) => (
+                <motion.div
+                  key={index}
+                  className="neural-card p-4 text-center group hover:scale-105 transition-transform duration-300"
+                  whileHover={{ y: -5 }}
+                >
+                  <method.icon className={`w-6 h-6 ${method.color} mx-auto mb-2`} />
+                  <div className={`text-sm font-cyber font-bold ${method.color}`}>{method.label}</div>
+                  <div className="text-xs text-gray-400 font-mono">{method.desc}</div>
+                </motion.div>
+              ))}
+            </motion.div>
           </motion.div>
         </div>
 
-        {/* Rimuovere la wave SVG e sostituirla con una sottile transizione di gradiente */}
-        <div className="absolute bottom-0 left-0 right-0 h-24 bg-gradient-to-t from-white to-transparent"></div>
+        {/* Smooth transition */}
+        <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-gray-900 to-transparent"></div>
       </section>
 
       {/* Sezione modulo e informazioni di contatto */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-gray-900 relative -mt-16">
         <div className="container mx-auto px-4 md:px-6">
           <div className="max-w-6xl mx-auto">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
@@ -129,25 +177,28 @@ export default function Contatto() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.6, delay: 0.2 }}
-                  className="bg-white rounded-2xl shadow-xl p-8 h-full border border-gray-100"
+                  className="neural-card p-8 h-full"
                 >
-                  <h2 className="text-3xl font-serif font-bold mb-8 relative">
-                    Contatti
-                    <span className="absolute bottom-0 left-0 w-16 h-1 bg-agtech-blue rounded-full"></span>
+                  <h2 className="text-3xl font-cyber font-bold mb-8 hologram-text">
+                    CONTACT INFO
                   </h2>
 
                   <div className="space-y-8">
-                    <div className="flex items-start gap-4">
-                      <div className="bg-agtech-blue/10 p-3 rounded-full flex-shrink-0">
-                        <Mail className="w-6 h-6 text-agtech-blue" />
+                    <motion.div
+                      className="flex items-start gap-4 group"
+                      whileHover={{ x: 5 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <div className="neural-card p-3 flex-shrink-0 group-hover:shadow-glow-cyan transition-all duration-300">
+                        <Mail className="w-6 h-6 text-cyan-400" />
                       </div>
                       <div>
-                        <h3 className="font-medium text-lg">Email</h3>
-                        <a href="mailto:agtechdesigne@gmail.com" className="text-gray-600 hover:text-agtech-blue transition-colors">
+                        <h3 className="font-cyber font-bold text-lg text-white mb-1">EMAIL</h3>
+                        <a href="mailto:agtechdesigne@gmail.com" className="text-gray-400 hover:text-cyan-400 transition-colors font-mono text-sm">
                           agtechdesigne@gmail.com
                         </a>
                       </div>
-                    </div>
+                    </motion.div>
 
                     {/* WhatsApp Contact */}
                     <div className="flex items-start gap-4">
@@ -204,32 +255,34 @@ export default function Contatto() {
                     className="grid grid-cols-1 gap-6 lg:grid-cols-2"
                   >
                     <div>
-                      <label className="text-sm font-medium text-gray-600" htmlFor="name">
-                        Nome
+                      <label className="text-sm font-cyber font-bold text-cyan-400 tracking-wider" htmlFor="name">
+                        NOME
                       </label>
                       <input
                         id="name"
-                        name="name"  // Changed from from_name to name
+                        name="name"
                         type="text"
-                        value={formData.name}  // Changed from formData.from_name
+                        value={formData.name}
                         onChange={handleChange}
                         required
-                        className="mt-2 w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-agtech-blue"
+                        className="mt-2 w-full px-4 py-3 text-sm neural-card border-0 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 font-mono"
+                        placeholder="Il tuo nome..."
                       />
                     </div>
 
                     <div>
-                      <label className="text-sm font-medium text-gray-600" htmlFor="email">
-                        Email
+                      <label className="text-sm font-cyber font-bold text-cyan-400 tracking-wider" htmlFor="email">
+                        EMAIL
                       </label>
                       <input
                         id="email"
-                        name="email"  // Changed from reply_to to email
+                        name="email"
                         type="email"
-                        value={formData.email}  // Changed from formData.reply_to
+                        value={formData.email}
                         onChange={handleChange}
                         required
-                        className="mt-2 w-full px-4 py-2 text-sm border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-agtech-blue"
+                        className="mt-2 w-full px-4 py-3 text-sm neural-card border-0 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-cyan-400 font-mono"
+                        placeholder="la.tua@email.com"
                       />
                     </div>
                   </motion.div>
@@ -264,13 +317,19 @@ export default function Contatto() {
                     />
                   </div>
 
-                  <button
+                  <motion.button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full py-3 px-4 bg-agtech-blue text-white font-bold rounded-lg hover:bg-agtech-blue/80 focus:outline-none focus:ring-2 focus:ring-agtech-blue transition-all disabled:opacity-50"
+                    className="cyber-button w-full py-4 text-lg disabled:opacity-50"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    {isSubmitting ? "Invio..." : "Invia Messaggio"}
-                  </button>
+                    <div className="flex items-center justify-center gap-3">
+                      <Send className="w-5 h-5" />
+                      {isSubmitting ? "INVIO IN CORSO..." : "INVIA MESSAGGIO"}
+                      <Zap className="w-5 h-5" />
+                    </div>
+                  </motion.button>
                 </form>
               </div>
             </div>
