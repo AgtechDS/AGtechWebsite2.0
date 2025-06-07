@@ -7,7 +7,6 @@
   "installCommand": "npm install --legacy-peer-deps",
   "devCommand": "npm run dev",
   "public": true,
-  "regions": ["iad1"],
   "github": {
     "silent": false
   },
@@ -48,16 +47,7 @@
       ]
     },
     {
-      "source": "/static/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        }
-      ]
-    },
-    {
-      "source": "/(.*\\.(js|css|png|jpg|jpeg|gif|svg|ico|woff|woff2|ttf|eot))",
+      "source": "/assets/(.*)",
       "headers": [
         {
           "key": "Cache-Control",
