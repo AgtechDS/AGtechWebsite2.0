@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "name": "agtechdesigne-website",
+  "name": "agtechwebsite2-0",
   "framework": "vite",
   "buildCommand": "npm install --legacy-peer-deps && npm run build",
   "outputDirectory": "dist",
@@ -8,13 +8,15 @@
   "devCommand": "npm run dev",
   "public": true,
   "regions": ["iad1"],
-  "routes": [
-    { "handle": "filesystem" },
-    { "src": "/(.*)", "dest": "/index.html" }
-  ],
   "github": {
     "silent": false
   },
+  "rewrites": [
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
+  ],
   "headers": [
     {
       "source": "/(.*)",
